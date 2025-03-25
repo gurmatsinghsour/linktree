@@ -1,0 +1,162 @@
+/* RESET & GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* 
+  BACKGROUND:
+  1. Dark purple-to-black gradient
+  2. Sparse star pattern in a pseudo-element
+  3. Slow animation to gently shift star positions
+*/
+body {
+  /* Gradient background */
+  background: linear-gradient(135deg, #1a0033, #000000);
+  position: relative; /* So we can layer a pseudo-element for stars */
+}
+
+/* The starry overlay using ::before */
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Sparse stars: bigger background-size means fewer dots. */
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#ffffff 1px, transparent 1px);
+  background-size: 80px 80px;      /* Adjust for star spacing */
+  background-position: 0 0, 40px 40px;
+  opacity: 0.3;                    /* Dim the stars */
+  
+  /* Animate the star field to slowly drift */
+  animation: moveStars 60s linear infinite;
+}
+
+/* Keyframes for slow star drift */
+@keyframes moveStars {
+  0% {
+    background-position: 0 0, 40px 40px;
+  }
+  100% {
+    background-position: 80px 80px, 120px 120px;
+  }
+}
+
+/* CONTAINER for central content */
+.container {
+  min-height: 100vh;
+  max-width: 500px; /* Ensures it’s not too wide on large screens */
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* AVATAR STYLING */
+.avatar {
+  margin-bottom: 20px;
+}
+.avatar img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* HEADINGS/SUBTITLES */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* LINK BUTTONS WRAPPER */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LINK BUTTON STYLES */
+.link-button {
+  display: block;
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(128, 0, 128, 0.2); /* Subtle purple tint */
+  backdrop-filter: blur(6px);         /* Blur effect behind button */
+  transition: background 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.link-button:hover {
+  background: rgba(128, 0, 128, 0.3);
+}
+
+/* CERTIFICATES PAGE STYLES */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.cert-item {
+  background: rgba(128, 0, 128, 0.2);
+  backdrop-filter: blur(6px);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cert-item h2 {
+  margin-bottom: 8px;
+}
+
+.back-link {
+  margin-top: 40px;
+}
+
+.back-link a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 6px;
+  background: rgba(128, 0, 128, 0.2);
+  backdrop-filter: blur(6px);
+  transition: background 0.3s;
+}
+.back-link a:hover {
+  background: rgba(128, 0, 128, 0.3);
+}
